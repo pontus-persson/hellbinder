@@ -4,6 +4,8 @@
 
 settings_file = False
 
+loaded_settings = False
+
 available_bindings = {
     'Menu': [
         'Up',

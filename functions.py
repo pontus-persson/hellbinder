@@ -27,7 +27,7 @@ def get_settings_file(try_path=None):
     found_file = False
 
     for path in possible_paths:
-        print(path)
+        # print(path)
         # pprint(path)
         filename = glob.glob(path)
         #  = os.path.join("D:\Games\Steam", "File")
