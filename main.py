@@ -67,7 +67,7 @@ class MainFrame(wx.Frame):
 
     def OnKeybind(self, event):
         btn = event.GetEventObject().GetLabel()
-        wx.MessageBox("You clicked the button: "+btn)
+        # wx.MessageBox("You clicked the button: "+btn)
 
         # find the keybind in the settings object
         for section in config.loaded_settings:

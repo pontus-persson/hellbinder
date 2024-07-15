@@ -53,19 +53,31 @@ def get_settings_obj():
     # symbols = ['{', '}', '(', ')', '[', ']', '"', '*', ':', ',']
     symbols = ['{', '}', '(', ')', '[', ']', '"', ':', ',', '=']
     other_symbols = ['\\', '/*', '*/']
-    sections = ['Menu', 'Player', 'settings', 'Avatar', 'Stratagem']
-    keybinds = [
-        # Menu
+    # sections = ['Menu', 'Player', 'settings', 'Avatar', 'Stratagem']
+    # keybinds = [
+    #     # Menu
 
-        # Player
-        'OpenChat', 'CommunicationSpot', 'CommunicationWheelOpenBasic', 'VoicePushToTalk',
-        # Avatar
-        'String', 'Prone', 'CameraSwitchSide', 'WeaponFunctionDown', 'MoveForward', 'SwitchAimMode', 'ChangeEquipmentPrimary', 'MoveLeft',
-        'ChangeEquipmentGrenade', 'Use', 'Dodge', 'Melee', 'Crouch', 'ChangeEquipmentQuickGrenade', 'MoveRight', 'WeaponFunctionLeft',
-        'MoveBack', 'Climb', 'JumpPack', 'Sprint', 'Map', 'WeaponFunctionUp', 'WeaponFunctionRight', 'BackpackFunction', 'QuickStim',
-        # Stratagem
-        'Start', 'Up', 'Right', 'Down', 'Left'
-    ]
+    #     # Player
+    #     'OpenChat', 'CommunicationSpot', 'CommunicationWheelOpenBasic', 'VoicePushToTalk',
+    #     # Avatar
+    #     'String', 'Prone', 'CameraSwitchSide', 'WeaponFunctionDown', 'MoveForward', 'SwitchAimMode', 'ChangeEquipmentPrimary', 'MoveLeft',
+    #     'ChangeEquipmentGrenade', 'Use', 'Dodge', 'Melee', 'Crouch', 'ChangeEquipmentQuickGrenade', 'MoveRight', 'WeaponFunctionLeft',
+    #     'MoveBack', 'Climb', 'JumpPack', 'Sprint', 'Map', 'WeaponFunctionUp', 'WeaponFunctionRight', 'BackpackFunction', 'QuickStim',
+    #     # Stratagem
+    #     'Start', 'Up', 'Right', 'Down', 'Left'
+    # ]
+
+    # get the available bindings from the config
+    sections = []
+    keybinds = []
+    for section, binds in config.available_bindings.items():
+        sections.append(section)
+        for bind in binds:
+            keybinds.append(bind)
+
+    pprint(sections)
+    pprint(keybinds)
+
     keybind_inner = ['trigger', 'device_type', 'input', 'threshold', 'input_type']
     keywords = symbols + other_symbols + sections + keybinds
     white_space = [' ', '\t', '\n', '\r\n']
@@ -136,8 +148,8 @@ def get_settings_obj():
                             elif section == 'settings': # special case for settings, just save lines for now
                                 if line[i+1] == '\n':
                                     settings_obj[section][len(settings_obj[section])] = line
-                            else:
-                                print('Unknown ' + lexeme)
+                            # else:
+                            #     print('Unknown ' + lexeme)
 
                             lexeme = ''
                         completed_string = False
